@@ -618,7 +618,7 @@ to detect and report errors.
 </p>
 
 <dl>
-<dt>
+<dt id="stream-null">
 <code>stream-null</code> (constant)</dt>
 <dd>
 <code>Stream-null</code> is the distinguished nil stream, a single
@@ -632,7 +632,7 @@ need for streams to terminate.
 </pre>
 </dd>
 
-<dt>
+<dt id="stream-cons">
 <code>(stream-cons <i>object</i> <i>stream</i>)</code> (syntax)</dt>
 <dd>
 <code>Stream-cons</code> is the primitive constructor of streams,
@@ -652,7 +652,7 @@ is an error if the second argument of <code>stream-cons</code> is not a stream.
 </pre>
 </dd>
 
-<dt>
+<dt id="streamp">
 <code>(stream? <i>object</i>)</code> (function)</code></dt>
 <dd>
 <code>Stream?</code> returns <code>#t</code> if the object is a stream, and otherwise returns <code>#f</code>.  A stream
@@ -664,7 +664,7 @@ object may be either the null stream or a stream pair created by <code>stream-co
 </pre>
 </dd>
 
-<dt>
+<dt id="stream-nullp">
 <code>(stream-null? <i>object</i>)</code> (function)</code></dt>
 <dd>
 <code>Stream-null?</code> returns <code>#t</code> if the object is the distinguished nil stream, and
@@ -676,7 +676,7 @@ otherwise returns <code>#f</code.
 </pre>
 </dd>
 
-<dt>
+<dt id="stream-pairp">
 <code>(stream-pair? <i>object</i>)</code> (function)</dt>
 <dd>
 <code>Stream-pair?</code> returns <code>#t</code> if the object is a stream pair created by stream-cons, and
@@ -688,7 +688,7 @@ otherwise returns <code>#f</code>.
 </pre>
 </dd>
 
-<dt>
+<dt id="stream-car">
 <code>(stream-car <i>stream</i>)</code> (function)</dt>
 <dd>
 <code>Stream-car</code> returns the object in the stream-car field of
@@ -701,7 +701,7 @@ of stream-null.
 </pre>
 </dd>
 
-<dt>
+<dt id="stream-cdr">
 <code>(stream-cdr <i>stream</i>)</code> (function)</dt>
 <dd>
 <code>Stream-cdr</code> returns the stream in the stream-cdr field of
@@ -716,7 +716,7 @@ of stream-null.
 </pre>
 </dd>
 
-<dt>
+<dt id="stream-delay">
 <code>(stream-delay <i>expression</i>)</code> (syntax)</dt>
 <dd>
 <code>Stream-delay</code> is the essential mechanism for operating on streams, taking an
@@ -735,7 +735,7 @@ implicitly.
 </pre>
 </dd>
 
-<dt><code>(stream <i>object</i> ...)</code> (library function)
+<dt id="stream"><code>(stream <i>object</i> ...)</code> (library function)
 <dd>
 <code>Stream</code> returns a newly allocated finite stream of its arguments, in order.
 
@@ -745,7 +745,7 @@ implicitly.
 </dd>
 
 <dt>
-<code>(stream-unfoldn <i>generator</i> <i>seed</i> <i>n</i>)</code>
+<code id="stream-unfoldn">(stream-unfoldn <i>generator</i> <i>seed</i> <i>n</i>)</code>
 (function)</dt>
 <dd>
 <code>Stream-unfoldn</code> returns <i>n</i> streams whose contents are produced by successive calls
@@ -795,7 +795,7 @@ multiple calls to generator.
 </pre>
 </dd>
 
-<dt>
+<dt id="stream-map">
 <code>(stream-map <i>function</i> <i>stream</i> ...)</code> (library
 function)</dt>
 <dd>
@@ -815,7 +815,7 @@ streams are infinite.  The stream elements are evaluated in order.
 </pre>
 </dd>
 
-<dt>
+<dt id="stream-for-each">
 <code>(stream-for-each <i>procedure</i> <i>stream</i> ...)</code>
 (library function)</dt>
 <dd>
@@ -828,7 +828,7 @@ stream-for-each is unspecified.  The stream elements are visited in order.
 </pre>
 </dd>
 
-<dt>
+<dt id="stream-filter">
 <code>(stream-filter <i>predicate?</i> <i>stream</i>)</code> (library function)</dt>
 <dd>
 <code>Stream-filter</code> applies <i>predicate?</i> to each element
