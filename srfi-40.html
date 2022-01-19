@@ -1,23 +1,20 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html>
+<html lang="en">
   <head>
     <title>SRFI 40: A Library of Streams</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/srfi.css" type="text/css" />
+    <link rel="stylesheet" href="https://srfi.schemers.org/srfi.css" type="text/css" />
+    <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png">
   </head>
 
   <body>
 
-<H1>Title</H1>
+<h1><a href="https://srfi.schemers.org/"><img class="srfi-logo" src="https://srfi.schemers.org/srfi-logo.svg" alt="SRFI surfboard logo" /></a>40: A Library of Streams</h1>
 
-A Library of Streams
+<p>by Philip L. Bewig</p>
 
-<H1>Author</H1>
-
-Philip L. Bewig
-
-<H1>Status</H1>
+<h2>Status</h2>
 
 <p>This SRFI is currently in <em>withdrawn</em> status.  Here is <a href="https://srfi.schemers.org/srfi-process.html">an explanation</a> of each status that a SRFI can hold.  To provide input on this SRFI, please send email to <code><a href="mailto:srfi+minus+40+at+srfi+dotschemers+dot+org">srfi-40@<span class="antispam">nospam</span>srfi.schemers.org</a></code>.  To subscribe to the list, follow <a href="https://srfi.schemers.org/srfi-list-subscribe.html">these instructions</a>.  You can access previous messages via the mailing list <a href="https://srfi-email.schemers.org/srfi-40">archive</a>.</p>
 
@@ -29,7 +26,7 @@ Philip L. Bewig
 <LI>Withdrawn (superseded by <a href="https://srfi.schemers.org/srfi-41/srfi-41.html">SRFI 41</a>): 2017-08-10</LI>
 </UL>
 
-<H1>Abstract</H1>
+<h2>Abstract</h2>
 
 <p>
 Along with higher-order functions, one of the hallmarks of functional
@@ -58,7 +55,7 @@ convenient processing of streams and shows several examples of their
 use.  
 </p>
 
-<H1>Rationale</H1>
+<h2>Rationale</h2>
 
 <p>
 Two of the defining characteristics of functional programming
@@ -576,7 +573,7 @@ stream-define are both library procedures, not fundamental to the use
 of streams, and are thus excluded from this SRFI.
 </p>
 
-<H1>Specification</H1>
+<h2>Specification</h2>
 
 <p>A <i>stream-pair</i> is a data structure consisting of two fields called
 the <i>stream-car</i> and <i>stream-cdr</i>.  Stream-pairs are created
@@ -844,7 +841,7 @@ same order as they were in the input stream, and are tested by
 </dd>
 </dl>
 
-<H1>Implementation</H1>
+<h2>Implementation</h2>
 
 <p> A reference implementation of streams is shown below.  It strongly
 prefers simplicity and clarity to efficiency, and though a reasonable
@@ -1037,7 +1034,7 @@ defined in <a href="https://srfi.schemers.org/srfi-23/">SRFI 23</a>.
                 strm
                 1))))</pre>
 
-<H1>References</H1>
+<h2>References</h2>
 
 <ul>
 <li>
@@ -1070,7 +1067,7 @@ Workshop on ML, pp. 24-30.
 Patrick H. Winston, Berthold K. Horn: <i>Lisp</i>, 3rd edition,
 Addison Wesley, 1989.
 </ul>
-<H1>Copyright</H1>
+<h2>Copyright</h2>
 <p>Copyright (C) 2003 by Philip L. Bewig of Saint Louis, Missouri, United States of
 America.  All rights reserved.</p>
 
