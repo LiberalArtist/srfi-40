@@ -1,11 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML//EN" "http://www.w3.org/TR/html.dtd">
 <html lang="en">
   <head>
     <title>SRFI 40: A Library of Streams</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://srfi.schemers.org/srfi.css" type="text/css" />
-    <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png">
+    <link href="/favicon.png" rel="icon" sizes="192x192" type="image/png" />
   </head>
 
   <body>
@@ -17,14 +17,29 @@
 <h2>Status</h2>
 
 <p>This SRFI is currently in <em>withdrawn</em> status.  Here is <a href="https://srfi.schemers.org/srfi-process.html">an explanation</a> of each status that a SRFI can hold.  To provide input on this SRFI, please send email to <code><a href="mailto:srfi+minus+40+at+srfi+dotschemers+dot+org">srfi-40@<span class="antispam">nospam</span>srfi.schemers.org</a></code>.  To subscribe to the list, follow <a href="https://srfi.schemers.org/srfi-list-subscribe.html">these instructions</a>.  You can access previous messages via the mailing list <a href="https://srfi-email.schemers.org/srfi-40">archive</a>.</p>
+<ul>
+  <li>
+    Received: <a href="https://srfi.schemers.org/srfi-40/srfi-40-1.1.txt">2003-02-03</a>
+  </li>
+  <li>
+    Draft: 2003-02-03--2003-04-03
+  </li>
+  <li>
+    Revised: <a href="https://srfi.schemers.org/srfi-40/srfi-40-1.2.txt">2003-08-02</a>
+  </li>
+  <li>
+    Revised: <a href="https://srfi.schemers.org/srfi-40/srfi-40-1.3.txt">2003-12-23</a>
+  </li>
+  <li>
+    Final: <a href="https://srfi.schemers.org/srfi-40/srfi-40.html">2004-08-22</a>
+  </li>
+  <li>
+    Withdrawn (superseded by
+    <a href="https://srfi.schemers.org/srfi-41/srfi-41.html">SRFI 41</a>):
+    2017-08-10
+  </li>
+</ul>
 
-<LI>Received: <a href="https://srfi.schemers.org/srfi-40/srfi-40-1.1.txt">2003-02-03</a>
-<LI>Draft: 2003-02-03--2003-04-03
-<LI>Revised: <a href="https://srfi.schemers.org/srfi-40/srfi-40-1.2.txt">2003-08-02</a>
-<LI>Revised: <a href="https://srfi.schemers.org/srfi-40/srfi-40-1.3.txt">2003-12-23</a>
-<LI>Final: <a href="https://srfi.schemers.org/srfi-40/srfi-40.html">2004-08-22</a>
-<LI>Withdrawn (superseded by <a href="https://srfi.schemers.org/srfi-41/srfi-41.html">SRFI 41</a>): 2017-08-10</LI>
-</UL>
 
 <h2>Abstract</h2>
 
@@ -81,8 +96,7 @@ of Computer Programs</a>, uses streams extensively.
 The <a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-13.html#%_chap_Temp_9">example</a> given
 in R5RS makes use of streams to integrate systems of differential
 equations using the method of Runge-Kutta.  MIT Scheme, the original
-implementation of Scheme, provides streams natively.  <a
-href="#scheme-and-the-art">Scheme and the Art of Programming</a>, 
+implementation of Scheme, provides streams natively.  <a href="#scheme-and-the-art">Scheme and the Art of Programming</a>, 
 discusses streams.
 Some Scheme-like languages also have traditions of using streams:
 Winston and Horn, in their classic <a href="#lisp">Lisp textbook</a>, discuss streams, and
@@ -114,8 +128,7 @@ operational difference between the two types of streams.
 </p>
 
 <p>
-Philip Wadler, Walid Taha, and David MacQueen, in their paper <a
-href="#laziness-even-odd">"How to add laziness to a strict language
+Philip Wadler, Walid Taha, and David MacQueen, in their paper <a href="#laziness-even-odd">"How to add laziness to a strict language
 without even being odd"</a>, describe how they added streams to the
 SML/NJ compiler.  They discuss two kinds of streams: odd streams, as
 in SICP et al, and even streams, as in Haskell; the names odd and even
@@ -166,7 +179,7 @@ Here are the first two figures from their paper, rewritten in Scheme:
         (cutoff1 (- n 1)             
                  (cdr1 strm))))))    
 </pre></td>
-<td valign=top>
+<td valign="top">
 <pre>;;; FIGURE 2 -- EVEN
 
 (define nil2 (delay '()))
@@ -618,20 +631,22 @@ to detect and report errors.
 <dt id="stream-null">
 <code>stream-null</code> (constant)</dt>
 <dd>
+<p>
 <code>Stream-null</code> is the distinguished nil stream, a single
 Scheme object distinguishable from all other objects.  If the last
 stream-pair in a stream contains stream-null in its cdr field, the
 stream is finite and has a computable length.  However, there is no
 need for streams to terminate.
-
+</p>
 <pre>
-    stream-null                                 => (stream)
+    stream-null                                 =&gt; (stream)
 </pre>
 </dd>
 
 <dt id="stream-cons">
 <code>(stream-cons <i>object</i> <i>stream</i>)</code> (syntax)</dt>
 <dd>
+<p>
 <code>Stream-cons</code> is the primitive constructor of streams,
 returning a stream with the given object in its car field and the
 given stream in its cdr field.  The stream returned by
@@ -640,7 +655,7 @@ given stream in its cdr field.  The stream returned by
 of any type, and there is no requirement that successive elements of a
 stream be of the same type, although it is common for them to be.  It
 is an error if the second argument of <code>stream-cons</code> is not a stream.
-
+</p>
 <pre>    (stream-cons 'a stream-null)                =&gt; (stream 'a)
     (stream-cons 'a (stream 'b 'c 'd))          =&gt; (stream 'a 'b 'c 'd)
     (stream-cons "a" (stream 'b 'c))            =&gt; (stream "a" 'b 'c)
@@ -650,11 +665,12 @@ is an error if the second argument of <code>stream-cons</code> is not a stream.
 </dd>
 
 <dt id="streamp">
-<code>(stream? <i>object</i>)</code> (function)</code></dt>
+<code>(stream? <i>object</i>)</code> (function)</dt>
 <dd>
+<p>
 <code>Stream?</code> returns <code>#t</code> if the object is a stream, and otherwise returns <code>#f</code>.  A stream
 object may be either the null stream or a stream pair created by <code>stream-cons</code>.
-
+</p>
 <pre>    (stream? stream-null)                       =&gt; #t
     (stream? (stream-cons 'a stream-null))      =&gt; #t
     (stream? 3)                                 =&gt; #f
@@ -662,11 +678,12 @@ object may be either the null stream or a stream pair created by <code>stream-co
 </dd>
 
 <dt id="stream-nullp">
-<code>(stream-null? <i>object</i>)</code> (function)</code></dt>
+<code>(stream-null? <i>object</i>)</code> (function)</dt>
 <dd>
+<p>
 <code>Stream-null?</code> returns <code>#t</code> if the object is the distinguished nil stream, and
-otherwise returns <code>#f</code.
-
+otherwise returns <code>#f</code>.
+</p>
 <pre>    (stream-null? stream-null)                  =&gt; #t
     (stream-null? (stream-cons 'a stream-null)) =&gt; #f
     (stream-null? 3)                            =&gt; #f
@@ -676,9 +693,10 @@ otherwise returns <code>#f</code.
 <dt id="stream-pairp">
 <code>(stream-pair? <i>object</i>)</code> (function)</dt>
 <dd>
+<p>
 <code>Stream-pair?</code> returns <code>#t</code> if the object is a stream pair created by stream-cons, and
 otherwise returns <code>#f</code>.
-
+</p>
 <pre>    (stream-pair? stream-null)                  =&gt; #f
     (stream-pair? (stream-cons 'a stream-null)) =&gt; #t
     (stream-pair? 3)                            =&gt; #f
@@ -688,10 +706,11 @@ otherwise returns <code>#f</code>.
 <dt id="stream-car">
 <code>(stream-car <i>stream</i>)</code> (function)</dt>
 <dd>
+<p>
 <code>Stream-car</code> returns the object in the stream-car field of
 a stream-pair.  It is an error to attempt to evaluate the stream-car
 of stream-null.
-
+</p>
 <pre>    (stream-car (stream 'a 'b 'c))              =&gt; a
     (stream-car stream-null)                    =&gt; error
     (stream-car 3)                              =&gt; error
@@ -701,21 +720,22 @@ of stream-null.
 <dt id="stream-cdr">
 <code>(stream-cdr <i>stream</i>)</code> (function)</dt>
 <dd>
+<p>
 <code>Stream-cdr</code> returns the stream in the stream-cdr field of
 a stream-pair.  It is an error to attempt to evaluate the stream-cdr
 of stream-null.
-</code>
-
+</p>
 <pre>    (stream-cdr (stream 'a 'b 'c))              =&gt; (stream 'b 'c)
     (stream-cdr stream-null)                    =&gt; error
     (stream-cdr 3)                              =&gt; error
-</code>
+
 </pre>
 </dd>
 
 <dt id="stream-delay">
 <code>(stream-delay <i>expression</i>)</code> (syntax)</dt>
 <dd>
+<p>
 <code>Stream-delay</code> is the essential mechanism for operating on streams, taking an
 expression and returning a delayed form of the expression that can be asked at
 some future point to evaluate the expression and return the resulting value.  The
@@ -723,7 +743,7 @@ action of stream-delay is analogous to the action of delay, but it is specific t
 the stream data type, returning a stream instead of a promise; no corresponding
 <code>stream-force</code> is required, because each of the stream functions performs the force
 implicitly.
-
+</p>
 <pre>    (define from0
       (let loop ((x 0))
         (stream-delay
@@ -732,10 +752,11 @@ implicitly.
 </pre>
 </dd>
 
-<dt id="stream"><code>(stream <i>object</i> ...)</code> (library function)
+<dt id="stream"><code>(stream <i>object</i> ...)</code> (library function)</dt>
 <dd>
+<p>
 <code>Stream</code> returns a newly allocated finite stream of its arguments, in order.
-
+</p>
 <pre>    (stream 'a (+ 3 4) 'c)                      =&gt; (stream 'a 7 'c)
     (stream)                                    =&gt; stream-null
 </pre>
@@ -745,13 +766,14 @@ implicitly.
 <code id="stream-unfoldn">(stream-unfoldn <i>generator</i> <i>seed</i> <i>n</i>)</code>
 (function)</dt>
 <dd>
+<p>
 <code>Stream-unfoldn</code> returns <i>n</i> streams whose contents are produced by successive calls
 to generator, which takes the current seed as an arguments and returns <i>n</i> + 1
 values:
-
+</p>
 <p>
-<code>(<i>proc</i> <i>seed</i>)</code> -> <i>seed</i> <i>result0</i> ... <i>resultN</i>
-
+<code>(<i>proc</i> <i>seed</i>)</code> -&gt; <i>seed</i> <i>result0</i> ... <i>resultN</i>
+</p>
 <p>
 where <i>resultI</i> indicates how to produce the next element of the Ith result stream:
 </p>
@@ -846,13 +868,11 @@ same order as they were in the input stream, and are tested by
 <p> A reference implementation of streams is shown below.  It strongly
 prefers simplicity and clarity to efficiency, and though a reasonable
 attempt is made to be safe-for-space, no promises are made.  The reference
-implementation relies on the mechanism for defining record types of <a
-href="https://srfi.schemers.org/srfi-9/">SRFI-9</a>, and the functions
-<code>any</code> and <code>every</code> from <a
-href=""https://srfi.schemers.org/srfi-1/">SRFI-1</a>.  The
+implementation relies on the mechanism for defining record types of <a href="https://srfi.schemers.org/srfi-9/">SRFI-9</a>, and the functions
+<code>any</code> and <code>every</code> from <a href="https://srfi.schemers.org/srfi-1/">SRFI-1</a>.  The
 <code>stream-error</code> function aborts by calling <code>error</code> as
 defined in <a href="https://srfi.schemers.org/srfi-23/">SRFI 23</a>.
-
+</p>
 <pre>;;; PROMISES A LA SRFI-45:
 
 ;;; A separate implementation is necessary to
@@ -1066,7 +1086,7 @@ Workshop on ML, pp. 24-30.
 <a name="lisp"></a>
 Patrick H. Winston, Berthold K. Horn: <i>Lisp</i>, 3rd edition,
 Addison Wesley, 1989.
-</ul>
+</li></ul>
 <h2>Copyright</h2>
 <p>Copyright (C) 2003 by Philip L. Bewig of Saint Louis, Missouri, United States of
 America.  All rights reserved.</p>
@@ -1094,7 +1114,7 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </p>
 
-    <hr>
+    <hr />
     <address>Editor: <a href="mailto:srfi minus editors at srfi dot schemers dot org">Mike Sperber</a></address>
 <!-- Created: Mon Feb  3 14:53:23 MET 2003 -->
 <!-- hhmts start -->
